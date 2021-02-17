@@ -9,10 +9,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.github.paulocesar.domain.Categoria;
 import com.github.paulocesar.domain.Cidade;
+import com.github.paulocesar.domain.Cliente;
+import com.github.paulocesar.domain.Endereco;
 import com.github.paulocesar.domain.Estado;
 import com.github.paulocesar.domain.Produto;
+import com.github.paulocesar.domain.enums.TipoCliente;
 import com.github.paulocesar.repositories.CategoriaRepository;
 import com.github.paulocesar.repositories.CidadeRepository;
+import com.github.paulocesar.repositories.ClienteRepository;
+import com.github.paulocesar.repositories.EnderecoRepository;
 import com.github.paulocesar.repositories.EstadoRepository;
 import com.github.paulocesar.repositories.ProdutoRepository;
 
@@ -31,6 +36,12 @@ public class ECommerceApplication implements CommandLineRunner {
 	
 	@Autowired
 	private CidadeRepository cidadeRespository;
+	
+	@Autowired
+	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private EnderecoRepository enderecoRepository;
 	
 	
 	public static void main(String[] args) {
@@ -76,6 +87,18 @@ public class ECommerceApplication implements CommandLineRunner {
 		
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3)); 
 		produtoRepository.saveAll(Arrays.asList(prd1, prd2, prd3, prd4));
+		
+		Cliente cli1 = new Cliente(null, "Paulo Cesar", "email@email.com", "72845821034", TipoCliente.PESSOAFISICA);
+		
+		cli1.getTelefones().addAll(Arrays.asList("31981086644"));
+		
+		Endereco end1 = new Endereco(null, "Rua do Lago", "409", "casa", "São Marcos", "31920440", cli1, cid1 );
+		Endereco end2 = new Endereco(null, "Rua Duque de Caxias", "409","apto 915", "São Pelegrino", "54990900", cli1, cid3 );
+		
+		cli1.getEnderecos().addAll(Arrays.asList(end1, end2));
+		
+		clienteRepository.saveAll(Arrays.asList(cli1));
+		enderecoRepository.saveAll(Arrays.asList(end1, end2));
 		
 	}
 
