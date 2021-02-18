@@ -13,6 +13,7 @@ import com.github.paulocesar.domain.Cidade;
 import com.github.paulocesar.domain.Cliente;
 import com.github.paulocesar.domain.Endereco;
 import com.github.paulocesar.domain.Estado;
+import com.github.paulocesar.domain.ItemPedido;
 import com.github.paulocesar.domain.Pagamento;
 import com.github.paulocesar.domain.PagamentoBoleto;
 import com.github.paulocesar.domain.PagamentoCartao;
@@ -25,6 +26,7 @@ import com.github.paulocesar.repositories.CidadeRepository;
 import com.github.paulocesar.repositories.ClienteRepository;
 import com.github.paulocesar.repositories.EnderecoRepository;
 import com.github.paulocesar.repositories.EstadoRepository;
+import com.github.paulocesar.repositories.ItemPedidoRepository;
 import com.github.paulocesar.repositories.PagamentoRepository;
 import com.github.paulocesar.repositories.PedidoRepository;
 import com.github.paulocesar.repositories.ProdutoRepository;
@@ -56,6 +58,9 @@ public class ECommerceApplication implements CommandLineRunner {
 	
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 	
 	
 	public static void main(String[] args) {
@@ -130,6 +135,20 @@ public class ECommerceApplication implements CommandLineRunner {
 		pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
 		
 		pagamentoRepository.saveAll(Arrays.asList(pag1, pag2));
+		
+		
+		ItemPedido ip1 = new ItemPedido(ped1, prd1, 0.00, 1, 2000.00);
+		ItemPedido ip2 = new ItemPedido(ped1, prd3, 0.00, 2, 3000.00);
+		ItemPedido ip3 = new ItemPedido(ped2, prd2, 100.00, 1, 800.00);
+		
+		ped1.getItens().addAll(Arrays.asList(ip1, ip2));
+		ped2.getItens().addAll(Arrays.asList(ip3));
+		
+		prd1.getItens().addAll(Arrays.asList(ip1));
+		prd3.getItens().addAll(Arrays.asList(ip2));
+		prd2.getItens().addAll(Arrays.asList(ip3));
+		
+		itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
 		
 		
 	}
