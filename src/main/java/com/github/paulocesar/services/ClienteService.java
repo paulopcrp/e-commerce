@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.github.paulocesar.domain.Cliente;
 import com.github.paulocesar.repositories.ClienteRepository;
-import com.github.paulocesar.services.excessao.ObjetoNaoEcontradoExcessao;
+import com.github.paulocesar.services.excessao.ObjectNotFoundException;
 
 @Service
 public class ClienteService {
@@ -18,7 +18,7 @@ public class ClienteService {
 	
 		public Cliente buscar(Integer id) {
 			 Optional<Cliente> obj = repositorio.findById(id);
-			 return obj.orElseThrow(() -> new ObjetoNaoEcontradoExcessao(
+			 return obj.orElseThrow(() -> new ObjectNotFoundException(
 			  "Objeto não encontrado! Id: " + id + ", Cliente: " + Cliente.class.getName()));
 			
 		}

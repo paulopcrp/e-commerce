@@ -2,13 +2,15 @@ package com.github.paulocesar.resources.excessao;
 
 import java.io.Serializable;
 
-public class ErroPadrao implements Serializable  {
+public class StandartError implements Serializable  {
 
 	private static final long serialVersionUID = 1L;
+	
 	private Integer status;
 	private String msg;
 	private Long timeStamp;
-	public ErroPadrao(Integer status, String msg, Long timeStamp) {
+	
+	public StandartError(Integer status, String msg, Long timeStamp) {
 		super();
 		this.status = status;
 		this.msg = msg;
