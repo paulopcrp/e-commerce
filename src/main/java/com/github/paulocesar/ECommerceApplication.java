@@ -128,7 +128,7 @@ public class ECommerceApplication implements CommandLineRunner {
 		ped1.setPagamento(pag1);
 		
 		Pagamento pag2 = new PagamentoBoleto(null, SituacaoPagamento.PENDENTE, ped2, sdf.parse("17/02/2021 00:00"), null);
-		ped2.setPagamento(pag2);
+		ped2.setPagamento(pag2); 
 		
 		cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));
 		
