@@ -49,7 +49,7 @@ public class CategoriaResource {
 	public ResponseEntity<Void> alterar(@Valid @RequestBody CategoriaDTO objDto, @PathVariable Integer id) {
 		Categoria obj = service.fromDto(objDto);
 		obj.setId(id);
-		obj = service.alterar(obj);
+		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
 		
 	}
