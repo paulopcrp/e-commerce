@@ -59,8 +59,8 @@ public class CategoriaService {
 			return repositorio.findAll(pageRequest);
 		}
 		
-		public Categoria fromDTO(CategoriaDTO objDTO) {
-			return new Categoria(objDTO.getId(), objDTO.getNome());
+		public Categoria fromDto(CategoriaDTO objDto) {
+			return new Categoria(objDto.getId(), objDto.getNome());
 		}
 	
 }

@@ -36,8 +36,8 @@ public class CategoriaResource {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> inserir(@Valid @RequestBody CategoriaDTO objDTO) {
-		Categoria obj = service.fromDTO(objDTO);
+	public ResponseEntity<Void> inserir(@Valid @RequestBody CategoriaDTO objDto) {
+		Categoria obj = service.fromDto(objDto);
 		obj = service.inserir(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(obj.getId()).toUri();
@@ -47,7 +47,7 @@ public class CategoriaResource {
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> alterar(@Valid @RequestBody CategoriaDTO objDto, @PathVariable Integer id) {
-		Categoria obj = service.fromDTO(objDto);
+		Categoria obj = service.fromDto(objDto);
 		obj.setId(id);
 		obj = service.alterar(obj);
 		return ResponseEntity.noContent().build();
