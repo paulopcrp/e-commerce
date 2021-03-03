@@ -1,5 +1,6 @@
 package com.github.paulocesar.resources;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.github.paulocesar.DTO.ClienteDTO;
+import com.github.paulocesar.DTO.ClienteNewDTO;
 import com.github.paulocesar.domain.Cliente;
 import com.github.paulocesar.services.ClienteService;
 
@@ -54,6 +57,16 @@ public class ClienteResource {
 		List<ClienteDTO> listDto = list.stream().map(obj -> new ClienteDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);
 		
+	}
+	
+	@RequestMapping(method=RequestMethod.POST)
+	public ResponseEntity<Void> inserir(@Valid @RequestBody ClienteNewDTO objDto) {
+		Cliente obj = service.fromDTO(objDto);
+		obj = service.inserir(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+				.path("/{id}").buildAndExpand(obj.getId()).toUri();
+		return ResponseEntity.created(uri).build();
+			
 	}
 	
 	@RequestMapping(value = "/page", method=RequestMethod.GET)
