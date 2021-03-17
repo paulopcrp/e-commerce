@@ -78,8 +78,15 @@ public class ECommerceApplication implements CommandLineRunner {
 		Produto prd2 = new Produto(null, "Hemograma Plaquetas", 35.00);
 		Produto prd3 = new Produto(null, "Raio-X", 120.15);
 		Produto prd4 = new Produto(null, "PCR", 250.00);
+		Produto prd5 = new Produto(null, "Hemácias fetais, pesquisa", 54.00);
+		Produto prd6 = new Produto(null, "Hematócrito, determinação do", 60.00);
+		Produto prd7 = new Produto(null, "Hemoglobina, dosagem", 25.00);
+		Produto prd8 = new Produto(null, "Hemoglobina (eletroforese) - pesquisa e/ou dosagem", 18.00);
+		Produto prd9 = new Produto(null, "Hemograma com contagem de plaquetas ou frações (eritrograma, leucograma, plaquetas)", 21.00);
+		Produto prd10 = new Produto(null, "Hemossedimentação, (VHS) - pesquisa e/ou dosagem", 36.00);
+		Produto prd11 = new Produto(null, "Hemossiderina (siderócitos), sangue ou urina - pesquisa e/ou dosagem", 75.00);
 		
-		cat1.getProdutos().addAll(Arrays.asList(prd1, prd2));
+		cat1.getProdutos().addAll(Arrays.asList(prd1, prd2,prd5,prd6,prd7,prd8,prd9,prd10,prd11));
 		cat2.getProdutos().addAll(Arrays.asList(prd3));
 		cat3.getProdutos().addAll(Arrays.asList(prd4));
 		
@@ -87,6 +94,14 @@ public class ECommerceApplication implements CommandLineRunner {
 		prd2.getCategorias().addAll(Arrays.asList(cat1));
 		prd3.getCategorias().addAll(Arrays.asList(cat2));
 		prd4.getCategorias().addAll(Arrays.asList(cat3));
+		prd5.getCategorias().addAll(Arrays.asList(cat1));
+		prd6.getCategorias().addAll(Arrays.asList(cat1));
+		prd7.getCategorias().addAll(Arrays.asList(cat1));
+		prd8.getCategorias().addAll(Arrays.asList(cat1));
+		prd9.getCategorias().addAll(Arrays.asList(cat1));
+		prd10.getCategorias().addAll(Arrays.asList(cat1));
+		prd11.getCategorias().addAll(Arrays.asList(cat1));
+		
 		
 		
 		Estado est1 = new Estado(null, "Rio Grande do Sul");
@@ -105,7 +120,7 @@ public class ECommerceApplication implements CommandLineRunner {
 		cidadeRespository.saveAll(Arrays.asList(cid1, cid2, cid3));
 		
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3)); 
-		produtoRepository.saveAll(Arrays.asList(prd1, prd2, prd3, prd4));
+		produtoRepository.saveAll(Arrays.asList(prd1, prd2, prd3, prd4, prd5, prd6, prd7, prd8, prd9, prd10, prd11));
 		
 		Cliente cli1 = new Cliente(null, "Paulo Cesar", "email@email.com", "72845821034", TipoCliente.PESSOAFISICA);
 		
