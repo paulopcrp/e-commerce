@@ -139,7 +139,7 @@ public class ECommerceApplication implements CommandLineRunner {
 		Pedido ped1 = new Pedido(null, sdf.parse("17/02/2021 18:10"), cli1, end2);
 		Pedido ped2 = new Pedido(null, sdf.parse("17/02/2021 18:13"), cli1, end1);
 		
-		Pagamento pag1 = new PagamentoCartao(null, SituacaoPagamento.QUITADO, ped1, 3);
+		Pagamento pag1 = new PagamentoCartao(null, SituacaoPagamento.QUITADO, ped1, 0);
 		ped1.setPagamento(pag1);
 		
 		Pagamento pag2 = new PagamentoBoleto(null, SituacaoPagamento.PENDENTE, ped2, sdf.parse("17/02/2021 00:00"), null);
